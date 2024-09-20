@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "fast-madr"
+version = "0.1.0"
+description = ""
+authors = ["Mfreitas0 <mfreitasc0@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.0"
+sqlalchemy = "^2.0.35"
+taskipy = "^1.13.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
