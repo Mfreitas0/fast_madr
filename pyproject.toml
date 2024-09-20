@@ -7,9 +7,13 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-fastapi = "^0.115.0"
+fastapi = {extras = ["standard"], version = "^0.115.0"}
 sqlalchemy = "^2.0.35"
 taskipy = "^1.13.0"
+pydantic = "^2.9.2"
+
+[tool.taskipy.tasks]
+run = 'fastapi dev fast_madr/main.py'
 
 
 [build-system]
