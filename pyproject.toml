@@ -13,9 +13,11 @@ taskipy = "^1.13.0"
 pydantic = "^2.9.2"
 psycopg = "^3.2.2"
 pytest = "^8.3.3"
+testcontainers = {extras = ["postgres"], version = "^4.8.1"}
 
 [tool.taskipy.tasks]
 run = 'fastapi dev fast_madr/main.py'
+test = 'pytest -vv'
 
 
 [build-system]

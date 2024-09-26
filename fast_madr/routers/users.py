@@ -24,7 +24,7 @@ def create_user(user: UserModel, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_user)
 
-    return {"username": user.username, "emal": user.email, "password": user.password}
+    return {"username": user.username, "email": user.email, "password": user.password}
 
 
 @router.put("/user/{user_id}", tags=["users"])
@@ -54,4 +54,4 @@ def delete_user(user_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found.")
     db.delete(existing_user)
     db.commit()
-    return {"detail": "User deleted"}
+    return {"detail": "User deleted."}
