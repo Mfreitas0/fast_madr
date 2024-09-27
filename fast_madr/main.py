@@ -1,9 +1,10 @@
 from fastapi import FastAPI
-from fast_madr.routers import users
+from fast_madr.routers import users, books
 
 
 app = FastAPI()
 app.include_router(users.router)
+app.include_router(books.router)
 
 
 @app.get("/")

@@ -14,10 +14,12 @@ pydantic = "^2.9.2"
 psycopg = "^3.2.2"
 pytest = "^8.3.3"
 testcontainers = {extras = ["postgres"], version = "^4.8.1"}
+alembic = "^1.13.3"
+sqlacodegen = "3.0.0rc1"
 
 [tool.taskipy.tasks]
 run = 'fastapi dev fast_madr/main.py'
-test = 'pytest -vv'
+test = 'pytest -vv -s'
 
 
 [build-system]

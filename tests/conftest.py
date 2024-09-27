@@ -4,7 +4,7 @@ from sqlalchemy.engine import create_engine
 from sqlalchemy.orm import Session
 from testcontainers.postgres import PostgresContainer
 
-from fast_madr.database import get_db, reg
+from fast_madr.models import get_db, reg
 from fast_madr.main import app
 
 
@@ -46,6 +46,10 @@ def client_with_user(client):
     with client:
         client.post(
             "/user/",
-            json={"username": "test", "email": "test@test.com", "password": "test"},
+            json={
+                "username": "test",
+                "email": "test@test.com",
+                "password": "test",
+            },
         )
         yield client

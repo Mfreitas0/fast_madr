@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from fast_madr.model import UserModel
+from fast_madr.schema import UserModel
 
 user = UserModel
 
@@ -11,7 +11,7 @@ def test_retorno_get(client):
     assert response.json() == {"Hello": "Wold"}
 
 
-def test_adicionado_usuario(client):
+def test_adicionar_usuario(client):
     response = client.post(
         "/user/",
         json={
@@ -29,7 +29,21 @@ def test_adicionado_usuario(client):
     }
 
 
-def test_atualizando_usuario(client_with_user):
+def test_adicionar_usuario_existente(client_with_user):
+    response = client_with_user.post(
+        "/user/",
+        json={
+            "username": "test",
+            "email": "test@test.com",
+            "password": "test",
+        },
+    )
+
+    assert response.status_code == HTTPStatus.BAD_REQUEST
+    assert response.json() == {"detail": "User already exists."}
+
+
+def test_atualizar_usuario(client_with_user):
     response = client_with_user.put(
         "/user/1",
         json={
@@ -48,8 +62,29 @@ def test_atualizando_usuario(client_with_user):
     }
 
 
-def test_deletando_usuario(client_with_user):
+def test_atualizar_usuario_nao_encontrado(client_with_user):
+    response = client_with_user.put(
+        "/user/2",
+        json={
+            "username": "test_modificated",
+            "email": "modificated@test.com",
+            "password": "test",
+        },
+    )
+
+    assert response.status_code == HTTPStatus.NOT_FOUND
+    assert response.json() == {"detail": "User not found."}
+
+
+def test_deletar_usuario(client_with_user):
     response = client_with_user.delete("/user/1")
 
     assert response.status_code == HTTPStatus.OK
     assert response.json() == {"detail": "User deleted."}
+
+
+def test_deletar_usuario_nao_encontrado(client_with_user):
+    response = client_with_user.delete("/user/2")
+
+    assert response.status_code == HTTPStatus.NOT_FOUND
+    assert response.json() == {"detail": "User not found."}
