@@ -30,7 +30,7 @@ O projeto está dividido em três principais seções:
 1. Clone o repositório:
 
     ```bash
-    git clone https://github.com/seu-usuario/madr.git
+    git clone https://github.com/Mfreitas0/fast_madr.git
     cd madr
     ```
 
